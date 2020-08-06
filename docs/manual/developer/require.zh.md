@@ -61,17 +61,22 @@ order: 6
 
 ```typescript
 // 使用 G2/core 壳子
-import { Chart, registerGeometry, registerComponentPlugin, registerCanvas } from '@antv/g2/lib/core';
-import Line from '@antv/g2/lib/geometry/line';
-import Axis from '@antv/g2/lib/component/axis';
-import Tooltip from '@antv/g2/lib/component/tooltip';
-import G from '@antv/g-canvas';
+import {
+  Chart,
+  registerGeometry,
+  registerComponentController,
+  registerEngine,
+} from '@antv/g2/lib/core'
+import Line from '@antv/g2/lib/geometry/line'
+import Axis from '@antv/g2/lib/util/axis'
+import Tooltip from '@antv/g2/lib/util/tooltip'
+import * as CanvasEngine from '@antv/g-canvas'
 
 // 按需注入
-registerEngine('canvas', G);
-registerGeometry('line', Line);
-registerComponentPlugin('axis', Axis);
-registerComponentPlugin('tooltip', Tooltip);
+registerEngine('canvas', CanvasEngine)
+registerGeometry('line', Line)
+registerComponentController('axis', Axis)
+registerComponentController('tooltip', Tooltip)
 
 // 创建折线图，后面的代码没有任何区别
 const chart = new Chart({
